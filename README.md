@@ -15,13 +15,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist mdmsoft/yii2-captcha "~1.0"
+php composer.phar require --prefer-dist gybe/yii2-captcha "~1.0"
 ```
 
 or add
 
 ```
-"mdmsoft/yii2-captcha": "~1.0"
+"gybe/yii2-captcha": "~1.0"
 ```
 
 to the require section of your `composer.json` file.
@@ -38,8 +38,8 @@ public function actions()
 	return [
 		...
 		'captcha' => [
-                'class' => 'mdm\captcha\CaptchaAction',
-                'level' => 3, // avaliable level are 1,2,3 :D
+                'class' => 'gybe\captcha\CaptchaAction',
+                'level' => 1, // avaliable level are 1,2,3 :D
             ],
 	];
 }
@@ -54,4 +54,3 @@ $form->field($model, 'verifyCode')->widget(Captcha::className(), [
 ?>
 
 ```
-![screenshot](https://lh3.googleusercontent.com/-ACmPR-FSnfE/U4Rz2f3tqqI/AAAAAAAAAgw/D6xuLeobLU4/w804-h496-no/Screenshot+from+2014-05-27+16%253A47%253A07.png)
