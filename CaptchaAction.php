@@ -1,6 +1,6 @@
 <?php
 
-namespace mdm\captcha;
+namespace gybe\captcha;
 
 use Yii;
 use yii\web\Response;
@@ -73,7 +73,7 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
         } else {
             $this->setHttpHeaders();
             Yii::$app->response->format = Response::FORMAT_RAW;
-            return $this->renderImage($this->getVerifyCode(false, true));
+            return $this->renderImage($this->getVerifyCode(true, true));
         }
     }
 

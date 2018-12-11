@@ -1,5 +1,11 @@
 Captcha With Math Equation
 ==========================
+forked from [mdmsoft/yii2-captcha](https://github.com/mdmsoft/yii2-captcha)
+
+改动:
+- 支持php7
+- 重写验证码方程式，原版动不动求极限...
+- 每次刷新改为默认重新生成验证码
 
 Installation
 ------------

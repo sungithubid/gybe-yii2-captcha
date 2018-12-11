@@ -1,6 +1,6 @@
 <?php
 
-namespace mdm\captcha\equations;
+namespace gybe\captcha\equations;
 
 /**
  * Polynomial Orde 2

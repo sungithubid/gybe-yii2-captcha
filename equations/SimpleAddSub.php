@@ -1,22 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * Date: 2018/12/11
+ * Time: 下午2:12
+ */
 
 namespace gybe\captcha\equations;
 
-/**
- * AddSub
- * Simple math equation like `$a + $b - $c`
- *
- * @author Misbahul D Munir <misbahuldmunir@gmail.com>
- * @since 1.0
- */
-class AddSub
-{
 
+class SimpleAddSub
+{
     protected static function format($code)
     {
-        $a = $code[1] + $code[2] + $code[3] * $code[5];
-        $b = $code[3] + $code[4] + 12;
-        $c = $code[2] + $code[4] + $code[5] + 1;
+        $a = $code[1] + $code[2] + $code[5];
+        $b = $code[3] + $code[4] + 4;
+        $c = $code[2] + $code[4] + $code[5] + 2;
 
         return [$a, $b, $c];
     }
@@ -32,4 +30,5 @@ class AddSub
         list($a, $b, $c) = static::format($code);
         return $a + $b - $c;
     }
+
 }
