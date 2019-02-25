@@ -16,13 +16,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require --prefer-dist gybe/yii2-captcha "~1.2.0"
+composer require --prefer-dist gybe/yii2-captcha "~1.2.1"
 ```
 
 or add
 
 ```
-"gybe/yii2-captcha": "~1.2.0"
+"gybe/yii2-captcha": "~1.2.1"
 ```
 
 to the require section of your `composer.json` file.
