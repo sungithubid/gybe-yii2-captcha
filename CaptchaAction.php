@@ -51,6 +51,18 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
     public $applyEffect = false;
 
     /**
+     * 干扰版本生成的图片宽度
+     * @var int
+     */
+    public $effectWidth = 120;
+
+    /**
+     * 干扰版本生成的图片高度
+     * @var int
+     */
+    public $effectHeight = 64;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -219,7 +231,7 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
 
         $phraseBuilder = new PhraseBuilder('5', '0123456789+-');
         $captchaBuilder = new CaptchaBuilder($codePhrase, $phraseBuilder);
-        $captchaBuilder->build(150, 40, $font);
+        $captchaBuilder->build($this->effectWidth, $this->effectHeight, $font);
 
         ob_start();
         switch ($this->imageFormat) {
