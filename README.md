@@ -6,6 +6,7 @@ forked from [mdmsoft/yii2-captcha](https://github.com/mdmsoft/yii2-captcha)
 - 支持php7
 - 重写验证码方程式，原版动不动求极限...
 - 每次刷新改为默认重新生成验证码
+- 增加干扰线，背景色等干扰
 
 Installation
 ------------
@@ -40,6 +41,7 @@ public function actions()
 		'captcha' => [
                 'class' => 'gybe\captcha\CaptchaAction',
                 'level' => 1, // avaliable level are 1,2,3 :D
+                'applyEffect' => true // 干扰线设置
             ],
 	];
 }
