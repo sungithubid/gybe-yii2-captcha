@@ -56,7 +56,7 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
     public function init()
     {
         if ($this->level === null) {
-            $this->level = ArrayHelper::getValue(\Yii::$app->params, 'mdm.captcha.level', 1);
+            $this->level = ArrayHelper::getValue(\Yii::$app->params, 'gybe.captcha.level', 1);
         }
     }
 

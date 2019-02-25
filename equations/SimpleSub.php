@@ -12,7 +12,7 @@ class SimpleSub
 {
     protected static function format($code)
     {
-        $a = $code[2] + $code[3] + $code[5];
+        $a = $code[2] + $code[3] + $code[5] - 1;
         $b = $code[1] + $code[4] + 1;
 
         return [$a, $b];

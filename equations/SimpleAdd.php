@@ -12,7 +12,7 @@ class SimpleAdd
 {
     protected static function format($code)
     {
-        $a = $code[2] + $code[3] * $code[5] - 2;
+        $a = $code[2] + $code[3] * $code[5] - 1;
         $b = $code[1] + $code[4];
 
         return [$a, $b];
