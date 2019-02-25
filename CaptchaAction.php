@@ -6,12 +6,12 @@ use Yii;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
+use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
 
 /**
- * Description of CaptchaAction
- *
- * @author Misbahul D Munir <misbahuldmunir@gmail.com>
- * @since 1.0
+ * Class CaptchaAction
+ * @package gybe\captcha
  */
 class CaptchaAction extends \yii\captcha\CaptchaAction
 {
@@ -20,7 +20,7 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
 
     /**
      * Avaliable value are 'jpeg' or 'png'
-     * @var string 
+     * @var string
      */
     public $imageFormat = self::JPEG_FORMAT;
     /**
@@ -32,10 +32,10 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
      * Font size.
      * @var int
      */
-    public $size = 14;
+    public $size = 30;
     /**
      * Allow decimal
-     * @var boolean 
+     * @var boolean
      */
     public $allowDecimal = false;
     /**
@@ -43,6 +43,12 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
      * @var array
      */
     public static $classes;
+
+    /**
+     * apply effect
+     * @var bool
+     */
+    public $applyEffect = false;
 
     /**
      * @inheritdoc
@@ -73,6 +79,9 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
         } else {
             $this->setHttpHeaders();
             Yii::$app->response->format = Response::FORMAT_RAW;
+            if ($this->applyEffect) {
+                return $this->renderEffectImage($this->getVerifyCode(true, true));
+            }
             return $this->renderImage($this->getVerifyCode(true, true));
         }
     }
@@ -196,7 +205,51 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
         $class = static::$classes[$this->level][$code[0] % count(static::$classes[$this->level])];
         return $class::getValue($code, $this->allowDecimal);
     }
+
+
+    /**
+     * apply effect
+     * @param $code
+     * @return string
+     */
+    protected function renderEffectImage($code)
+    {
+        $codePhrase = trim($this->getExpresion($code));
+        $font = __DIR__ . '/../../gregwar/captcha/src/Gregwar/Captcha/Font/captcha' . $this->randFont() . '.ttf';
+
+        $phraseBuilder = new PhraseBuilder('5', '0123456789+-');
+        $captchaBuilder = new CaptchaBuilder($codePhrase, $phraseBuilder);
+        $captchaBuilder->build(150, 40, $font);
+
+        ob_start();
+        switch ($this->imageFormat) {
+            case self::JPEG_FORMAT:
+                imagejpeg($captchaBuilder->getContents());
+                break;
+            case self::PNG_FORMAT:
+            case self::PNG_FORMAT:
+                imagepng($captchaBuilder->getContents());
+                break;
+        }
+        imagedestroy($captchaBuilder->getContents());
+        return ob_get_clean();
+    }
+
+    /**
+     * captcha2.ttf这个字体会导致 '+' 显示异常,排出这个字体
+     *
+     * @param array $randArr
+     * @return mixed
+     */
+    protected function randFont($randArr = array())
+    {
+        $fontArr = array(0, 1, 3, 4, 5);
+        if ($randArr) {
+            $fontArr = $randArr;
+        }
+        shuffle($fontArr);
+        return current($fontArr);
+    }
 }
 
-//
 CaptchaAction::$classes = require(__DIR__ . '/equations/classes.php');

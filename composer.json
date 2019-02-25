@@ -5,7 +5,8 @@
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "require": {
-        "yiisoft/yii2": "~2.0"
+        "yiisoft/yii2": "~2.0",
+        "gregwar/captcha": "1.*"
     },
     "autoload": {
         "psr-4": {
