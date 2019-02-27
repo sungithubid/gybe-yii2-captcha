@@ -239,7 +239,6 @@ class CaptchaAction extends \yii\captcha\CaptchaAction
                 imagejpeg($captchaBuilder->getContents());
                 break;
             case self::PNG_FORMAT:
-            case self::PNG_FORMAT:
                 imagepng($captchaBuilder->getContents());
                 break;
         }
