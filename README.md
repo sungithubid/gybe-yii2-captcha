@@ -56,3 +56,4 @@ $form->field($model, 'verifyCode')->widget(Captcha::className(), [
 ?>
 
 ```
+![apply-effect-img](https://ojpoc641y.qnssl.com/_20190306113604_5c7f4024a2be5.png)
